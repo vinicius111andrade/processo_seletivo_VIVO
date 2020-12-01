@@ -24,12 +24,14 @@ Para testar a API estou usando o Insomnia.
 ## Ex 01
 Meu algoritmo recebe um array numpy ou um array de arrays numpy, sendo respectivamente a representacao de um vetor e de uma matriz.  
   
-
+Depois ele conta cada ocorrencia dos elementos inteiros pertencentes ao intervalo [0, 15].  
+  
+E por ultimo retorna um dicionario contabilizando a ocorrencia de cada elemento, com pares no formato elemento : numero_de_ocorrencias.  
   
 ## Ex 02
 Eu usei o flask para criar a API e usei o Insomnia para testa-la.  
   
-A API recebe um vetor do tipo [1, 2, 3, 4, ..., 15] em formato de string.
+A API recebe um vetor do tipo [1, 2, 3, 4, ..., 15] em formato de string.  
 Ex: http://127.0.0.1:5000/vetor?vetor=%5B0,1,3,4,5%5D  
   
 E retorna um arquivo JSON que contabiliza a ocorrencia de cada elemento possivel.  
