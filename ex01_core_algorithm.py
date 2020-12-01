@@ -10,7 +10,8 @@ def		dictionary_keys(dictionary):
 def		add_occurrences(occurrences, found_elements):
 	keys = dictionary_keys(found_elements)
 	for key in keys:
-		occurrences[key] += found_elements[key]
+		to_add = int(found_elements[key])
+		occurrences[key] += to_add
 	return occurrences
 
 # Recebe um array e retorna um dicionário com key == elemento, value == número de ocorrências.
