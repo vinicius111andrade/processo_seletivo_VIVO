@@ -3,6 +3,7 @@ from flask import request
 import json
 import numpy as np
 import pandas as pd
+import datetime
 
 '''
 resumo_corrida = {
@@ -33,9 +34,9 @@ resumo_template = {
 	}
 
 def		duracao_total(tempos_voltas):
-	total = datetime.strptime('0:0', '%M:%S')
+	total = datetime.strptime('0:0.0', '%M:%S.%f')
 	for tempo in tempos_voltas:
-		total += datetime.strptime(start, '%M:%S')
+		total += datetime.strptime(start, '%M:%S.%f')
 	return total
 
 def		velocidade_m_corrida(medias_por_volta):
@@ -49,12 +50,16 @@ def		velocidade_m_corrida(medias_por_volta):
 
 def		gera_resumo_heroi(df, super_heroi):
 	resumo_heroi = resumo_template.copy()
+	duracao_total = datetime.datetime.strptime('0:0.0', '%M:%S.%f')
 
 	for index, row in df.iterrows():
-		if row["Numero Volta"] == "1":
-			resumo_heroi["Tempo Inicial"] = row["Hora"]
-		if int(row["Numero Volta"]) > resumo_heroi["Total de Voltas"]:
-			resumo_heroi["Total de Voltas"] = row["Numero Volta"]
+		if row["Super-Heroi"] == super_heroi:
+			if row["Numero Volta"] == 1:
+				resumo_heroi["Tempo Inicial"] = row["Hora"]
+			if int(row["Numero Volta"]) > resumo_heroi["Total de Voltas"]:
+				resumo_heroi["Total de Voltas"] = row["Numero Volta"]
+			duracao_total += datetime.datetime.strptime(row["Tempo Volta"], '%M:%S.%f')
+	resumo_heroi["Duracacao Total"] = duracao_total
 	return resumo_heroi
 
 def		gera_resumo_corrida(df):
@@ -63,6 +68,7 @@ def		gera_resumo_corrida(df):
 	for index, row in df.iterrows():
 		super_heroi = row["Super-Heroi"]
 		if not super_heroi in resumo_corrida:
+			print(super_heroi)
 			resumo_corrida[super_heroi] = gera_resumo_heroi(df, super_heroi)
 
 	return resumo_corrida

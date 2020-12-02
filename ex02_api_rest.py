@@ -102,7 +102,7 @@ def		instructions():
 	txt = ln1 + ln2 + ln3 + ln4
 	return txt
 
-# Recebe um lista de inteiros pertencentes ao intervalo [0,15]
+# Recebe uma lista de inteiros pertencentes ao intervalo [0,15]
 @app.route('/vetor')
 def		vector():
 	vector_str = request.args.get('vetor')
