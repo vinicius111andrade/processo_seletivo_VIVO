@@ -34,15 +34,6 @@ def		count_elements(vector):
 	occurrences = add_occurrences(occurrences, found_elements)
 	return occurrences
 
-# Recebe um array de arrays, itera a matriz chamando count_elements para cada vetor, todas ocorrências são armazenadas num dict que é retornado.
-def		iterate_matrix(matrix):
-	occurrences = dict(zip(range(16), [0] * 16))
-	for i in range(len(matrix)):
-		vector = matrix[i]
-		new_occurrences = count_elements(vector)
-		occurrences = add_occurrences(occurrences, new_occurrences)
-	return occurrences
-
 #Checa se uma variavel pode ser convertida pra inteiro
 def is_int(arg):
 	try:

@@ -33,21 +33,6 @@ resumo_template = {
 	"Melhor volta" : 0
 	}
 
-def		duracao_total(tempos_voltas):
-	total = datetime.strptime('0:0.0', '%M:%S.%f')
-	for tempo in tempos_voltas:
-		total += datetime.strptime(start, '%M:%S.%f')
-	return total
-
-def		velocidade_m_corrida(medias_por_volta):
-	n = len(medias_por_volta)
-	total = 0
-	for media in medias_por_volta:
-		total += media
-	return (total/n)
-
-#def		tempo_inicial(df)
-
 def		gera_resumo_heroi(df, super_heroi):
 	resumo_heroi = resumo_template.copy()
 	duracao_total = datetime.datetime.strptime('0:0.0', '%M:%S.%f')
@@ -76,13 +61,7 @@ def		gera_resumo_corrida(df):
 # primeiro ele checa se o suprheroi ja esta no dict, se n tiver ele adiciona e calcula tudo
 # vai pra proxima linha e repete ate o fim
 # quando terminar calcula o vencedor
-# repete o processo pra fazer os calculos mas soh pros dados gerados durante a corrida
-
-def		itera_df_printa(df):
-	for index, row in df.iterrows():
-		print("Tempos das voltas")
-		print(row["Tempo Volta"])
-		print()
+# repete o processo pra fazer os calculos mas soh pros dados gerados durante a corrida, que acaba quando o vencedor termina a prova
 
 def		main():
 	df = pd.read_csv("log_corrida.csv")
