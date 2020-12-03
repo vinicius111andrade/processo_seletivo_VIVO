@@ -3,7 +3,7 @@ from flask import request
 import json
 import numpy as np
 import pandas as pd
-import datetime
+from datetime import timedelta
 
 '''
 resumo_corrida = {
@@ -33,18 +33,38 @@ resumo_template = {
 	"Melhor volta" : 0
 	}
 
+def		inicio_em_segundos(tempo):
+	hrs, mins, secs, millis = map(float, tempo.split('.'))
+	td = timedelta(hours=hrs, minutes=mins, seconds=secs, milliseconds=millis)
+	return td.total_seconds()
+
+def		volta_em_segundos(tempo):
+	mins, secs, millis = map(float, tempo.split('.'))
+	td = timedelta(minutes=mins, seconds=secs, milliseconds=millis)
+	return td.total_seconds()
+
 def		gera_resumo_heroi(df, super_heroi):
 	resumo_heroi = resumo_template.copy()
-	duracao_total = datetime.datetime.strptime('0:0.0', '%M:%S.%f')
+	duracao_total = 0
+	menor_volta_seg = 999999999
+	soma_velo_medias = 0
 
 	for index, row in df.iterrows():
 		if row["Super-Heroi"] == super_heroi:
+			volta_seg = volta_em_segundos(row["Tempo Volta"])
+			velocidade_m = float(row["Velocidade media da Volta"])
+			duracao_total += volta_seg
+			soma_velo_medias += velocidade_m
+
 			if row["Numero Volta"] == 1:
 				resumo_heroi["Tempo Inicial"] = row["Hora"]
 			if int(row["Numero Volta"]) > resumo_heroi["Total de Voltas"]:
-				resumo_heroi["Total de Voltas"] = row["Numero Volta"]
-			duracao_total += datetime.datetime.strptime(row["Tempo Volta"], '%M:%S.%f')
-	resumo_heroi["Duracacao Total"] = duracao_total
+				resumo_heroi["Total de Voltas"] = int(row["Numero Volta"])
+			if menor_volta_seg > volta_seg:
+				menor_volta_seg = volta_seg
+				resumo_heroi["Melhor volta"] = row["Numero Volta"]
+	resumo_heroi["Duracao Total"] = duracao_total
+	resumo_heroi["Velocidade media da corrida"] = soma_velo_medias / resumo_heroi["Total de Voltas"]
 	return resumo_heroi
 
 def		gera_resumo_corrida(df):
