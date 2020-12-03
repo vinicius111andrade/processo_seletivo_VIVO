@@ -1,16 +1,10 @@
-'''
-Transforme o algoritmo anterior em uma API Rest. Você receberá como
-parâmetro uma lista com os valores de An e deverá retornar a saída do
-algoritmo no formato JSON.
-'''
-
-# Recebe uma lista de valores, um vetor
-# A saída do algoritmo deve ser no formato JSON
-
 from flask import Flask
 from flask import request
 import json
 import numpy as np
+
+# Recebe uma lista de valores, um vetor
+# A saída do algoritmo deve ser no formato JSON
 
 app = Flask(__name__)
 
@@ -86,9 +80,9 @@ def		create_vector(string):
 
 @app.route('/')
 def		instructions():
-	ln1 = "<p>Essa API recebe um vetor cujos elementos sao numeros inteiros pertencentes ao intervalo [0, 15].</p>"
-	ln2 = "<p>O retorno eh um arquivo Json com o numero de ocorrencias de cada elemento possivel.</p>"
-	ln3 = "<p>Para contar as ocorrencias em um vetor usar o path ./vetor</p>"
+	ln1 = "<p>Essa API recebe um vetor cujos elementos são números inteiros pertencentes ao intervalo [0, 15].</p>"
+	ln2 = "<p>O retorno é um arquivo Json com o número de ocorrências de cada elemento possível.</p>"
+	ln3 = "<p>Para contar as ocorrências em um vetor usar o path ./vetor</p>"
 	ln4 = "<p> vetor = [1, 2, 3, 4, 5, ..., 15]</p>"
 	txt = ln1 + ln2 + ln3 + ln4
 	return txt
