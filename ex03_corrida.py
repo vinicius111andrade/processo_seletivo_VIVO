@@ -3,11 +3,6 @@ import pandas as pd
 from datetime import timedelta
 
 '''
-resumo_corrida = {
-	"Superman" : {"Tempo Inicial" : tempo, "Total de Voltas" : n_voltas, "Duracao Total" : soma_das voltas, "Velocidade media da corrida" : media_das_medias, "Melhor volta" : melhor_volta},
-	...
-}
-
 com o n_voltas e a duracao total consigo ordenar quem chegou primeiro e por ultimo
 
 fim_da_corrida = {
@@ -15,11 +10,13 @@ fim_da_corrida = {
 	"Tempo final" : tempo_final
 }
 
-com o fim_da_corrida definido eu posso recalcular desconsiderando o q acontecer depois do fim da corrida
+Com o fim_da_corrida definido eu posso recalcular desconsiderando o que acontecer depois do fim da corrida.
+O fim da corrida está definido como quando o vencedor termina a corrida.
 '''
-# acha um heroi, procura todas as ocorrencias desse heroi, preenche o dict acima
-# vai pro prox heroi ate terminar o df
-# retorna uma tabela em html bonitinha
+# Algoritmo
+# Acha um heroi, procura todas as ocorrencias desse heroi, preenche o dict resumo_template.
+# Vai pro prox heroi ate terminar o df.
+# Retorna uma tabela em html bonitinha ou um json.
 
 # Para reutilizar esse template dict2 = dict1.copy()
 resumo_template = {
@@ -75,10 +72,11 @@ def		gera_resumo_corrida(df):
 
 	return resumo_corrida
 
-# primeiro ele checa se o suprheroi ja esta no dict, se n tiver ele adiciona e calcula tudo
-# vai pra proxima linha e repete ate o fim
-# quando terminar calcula o vencedor
-# repete o processo pra fazer os calculos mas soh pros dados gerados durante a corrida, que acaba quando o vencedor termina a prova
+# Primeiro ele checa se o suprheroi ja esta no dict, se n tiver ele adiciona e calcula tudo.
+# Vai pra proxima linha e repete ate o fim.
+# Quando terminar calcula o vencedor.
+# Repete o processo pra fazer os calculos mas só para os dados gerados durante a corrida, 
+# que acaba quando o vencedor termina a prova.
 
 def		main():
 	df = pd.read_csv("log_corrida.csv")
