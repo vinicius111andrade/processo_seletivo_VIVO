@@ -22,6 +22,7 @@ Nao consegui terminar a tempo, mas vou explicar e mostrar o que fiz.
   
 Com a imagem do log da corrida criei um arquivo .csv, li o arquivo usando pandas, que me retorna um dataframe. Esse dataframe eu uso pra iterar e calcular o que precisa ser calculado, as informacoes de retorno eu armazeno num dicionario.
   
+## Informações Úteis
 ### Como entrar no venv (virtual environment)
 https://docs.python.org/pt-br/3/library/venv.html  
   
@@ -42,3 +43,5 @@ Para testar a API estou usando o Insomnia.
  - Numpy  
  - Flask
  - Json
+ - Pandas
+ - Datetime
